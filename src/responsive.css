@@ -1,0 +1,60 @@
+/******* Edulens App Mobile Responsive******/
+
+@media screen and (max-width:728px){
+
+    body{
+        margin:0;
+        padding:0;
+    }
+    .index_main_widget{
+        width:90%;
+        padding:10% 2%;
+    }
+    select{
+        padding:3% 2%;
+    }
+
+    /* Form Area */
+    .form-area{
+        flex-direction: column;
+    }
+    .search_card{
+        width:100%;
+    }
+    .sort_widget{
+        margin:3rem 0 0 0;
+        width:100%;
+    }
+    /* End of Form Area */
+
+    /* Notice Card */
+    .notice_card{
+        width:98%;
+        padding:1%;
+    }
+    .notice_card h6{
+        font-size:0.8rem;
+        line-height:1.3rem;
+    }
+    /* Template Widget */
+    .template_card{
+        width:90%;
+        margin:2rem 2% 0 2%;
+        padding:8% 3%;
+    }
+    .inAppLoader{
+        width:20%;
+        margin:0 auto;
+        margin-top:6rem;
+      }
+    .pagination-widget{
+        width:100%;
+        margin-top:3rem;
+    }
+    .pag-num{
+        width:40%;
+    }
+    .pag-num span{
+        margin:0 3%;
+    }
+}
