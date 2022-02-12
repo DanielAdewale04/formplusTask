@@ -8,8 +8,8 @@ class FormWidget extends Component{
             <React.Fragment>
                 {/* Displays all form at the very top
                     Divide into sub components of Search, Filter of reusable component */}
-                <div className="breadcrumb-area">
-                     <div className="flexed-area centralized apart form-area">
+                <div className="breadcrumb-area form-area">
+                     <div className="flexed-area centralized apart">
                         <SearchBar />
                         <SortWidget />
                      </div>

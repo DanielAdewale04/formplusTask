@@ -1,42 +1,51 @@
-import React, {Component, useState, useEffect} from "react";
+import React, {useEffect} from "react";
 import { ChevronLeftRounded } from "@material-ui/icons";
 import { ChevronRightRounded } from "@material-ui/icons";
+import { useDispatch, useSelector } from "react-redux";
+import {getIndexOfLastTemp, getIndexOfFirstTemp, incrementCurrentPage, decrementCurrentPage} from "../../redux/paginationReducer";
 
-const Pagination = ({tempCardPerPage, totalNumbOfCard, paginate, ReversePaginate}) => {
-    var [firstPage, setFirstPage] = useState(0)
+
+
+// Pagination reusbale component
+const Pagination = () => {
+
+    const firstPage = useSelector((state) => state.paginationSlice.firstPage)
+    const totalTemplates = useSelector((state) => state.getTemplate.totalTemplates)
+    const tempPerPage = useSelector((state) => state.paginationSlice.tempPerpage)
+
     const indPageNumbers = []
+    // Get First Page
+    var firstPageNum = [firstPage]
     // Get Last Page
-    const lastPage = (Math.ceil((totalNumbOfCard / tempCardPerPage) - 1))
+    const lastPage = (Math.ceil((totalTemplates / tempPerPage) - 1))
+
+
+    const dispatch = useDispatch()
     // Get Total Number of Pages
-    for (var i = 1; i <= Math.ceil(totalNumbOfCard / tempCardPerPage); i++){
+    for (var i = 1; i <= Math.ceil(totalTemplates / tempPerPage); i++){
         indPageNumbers.push(i)
     }
-    // Increase number of Page by 1 and move to next Page
-    const PageIncrement = () =>{
-        if (firstPage >= 0){
-            setFirstPage(firstPage + 1)
-            paginate()
+
+    useEffect(() => {
+        dispatch(getIndexOfFirstTemp());
+        dispatch(getIndexOfLastTemp());
+        for (var i = 1; i <= Math.ceil(totalTemplates / tempPerPage); i++){
+            indPageNumbers.push(i)
         }
-    }
-    // Decrease number of Page by 1 and move to initial Page
-    const PageDecrement = () => {
-        if (firstPage > 0 ){
-            setFirstPage(firstPage - 1)
-            ReversePaginate()
-        }    
-    }
+        
+    }, [dispatch])
 
     return(
         <React.Fragment>
             <div className="flexed-area centralized apart pagination-widget">
-                <div onClick={PageDecrement} className="flexed-area centralized" style={{cursor: "pointer"}}>
+                <div onClick={() => dispatch(decrementCurrentPage())} className="flexed-area centralized" style={{cursor: "pointer"}}>
                     <ChevronLeftRounded />  
                     <h5>Previous</h5>
                 </div>
                 
                 <div className="pag-num">
                     <span>
-                        {indPageNumbers[firstPage]}
+                        {indPageNumbers[firstPageNum]}
                     </span>  
                         of  
                     <span>
@@ -44,7 +53,7 @@ const Pagination = ({tempCardPerPage, totalNumbOfCard, paginate, ReversePaginate
                     </span>
                 </div>
 
-                <div onClick={PageIncrement} className="flexed-area centralized">
+                <div onClick={() => dispatch(incrementCurrentPage())} className="flexed-area centralized">
                     <h5 style={{cursor: "pointer"}}>Next</h5>
                     <ChevronRightRounded />
                 </div>

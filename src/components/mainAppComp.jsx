@@ -1,32 +1,41 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import React, {useState, useEffect} from "react";
 import TemplateWidget from "./subComponents/template";
 import FormWidget from "./subComponents/formWidget";
 import NoticeCard from "./subComponents/NoticeCard";
+import Loader from "./subComponents/loader"
 
 
-class MainAppBody extends Component {
+function MainAppBody(){
+	const [loader, setLoader] = useState(false);
 
-	constructor(props){
-		super(props)
-		this.state = {
-			isAuth : false,
-		}
-	}
-		
-
-  render() {
-
+	useEffect(() =>{
+		setLoader(true)
+		setTimeout(() => {
+			setLoader(false)
+		}, 2000)
+	}, [])
     return (
 		<React.Fragment>
-			<div className="index_main_widget">
-				<FormWidget />
-				<NoticeCard />
-				<TemplateWidget />
-			</div>
+
+			{
+				loader ?
+				<div className="fixed_loader">
+					<Loader color="red" />
+				</div>
+				
+
+				:
+
+				<div className="index_main_widget">
+					<FormWidget />
+					<NoticeCard msg="Tada! Get started with a free template. Can’t find what you are looking for? Search from the 1000+ available templates"/>
+					<TemplateWidget />
+				</div>
+
+			}
+			
 		</React.Fragment>
     );
   }
-}
 
 export default MainAppBody;

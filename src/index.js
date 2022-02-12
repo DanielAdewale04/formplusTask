@@ -4,16 +4,15 @@ import './index.css';
 import './responsive.css';
 import MainAppBody from './components/mainAppComp';
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
-import {createStore, combinedReducers} from "redux";
+// import {createStore, combinedReducers} from "redux";
+import configureStore from './redux/configureStore';
 import {Provider} from "react-redux"
-import allReducers from "./reducers";
 
-const store = createStore(allReducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+// const store = createStore(allReducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
+    <Provider store={configureStore}>
         <MainAppBody>
         </MainAppBody>
     </Provider>

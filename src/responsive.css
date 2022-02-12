@@ -10,19 +10,22 @@
         width:90%;
         padding:10% 2%;
     }
+    .fixed_loader > div{
+        width:20%;
+    }
     select{
         padding:3% 2%;
     }
 
     /* Form Area */
-    .form-area{
+    .form-area > div{
         flex-direction: column;
     }
     .search_card{
         width:100%;
     }
     .sort_widget{
-        margin:3rem 0 0 0;
+        margin:1.5rem 0 0 0;
         width:100%;
     }
     /* End of Form Area */

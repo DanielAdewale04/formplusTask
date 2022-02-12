@@ -8,6 +8,25 @@
   --reverse-theme-bg: #ffffff;
 }
 
+/* Dynamic Web Scroll */
+::-webkit-scrollbar {
+  width: 8px;
+  border-radius: 10rem;
+}
+
+::-webkit-scrollbar-track {
+  background:grey;
+}
+
+::-webkit-scrollbar-thumb {
+  background: black;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: black;
+}
+/* End of Dynamic Web Scroll */
+
 /* Initial Necessaries */
 html{
   scroll-behavior: smooth;
@@ -19,6 +38,19 @@ body{
   font-family: 'Montserrat', sans-serif;
   margin:0;
   padding:0
+}
+.fixed_loader{
+  width:100%;
+  height:100%;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-bg);
+  z-index:3;
+}
+.fixed_loader > div{
+  width:5%;
 }
 i{
   color: var(--icon-text)
@@ -67,10 +99,12 @@ select{
 }
 .form-area{
   position: sticky;
-  top:3rem;
+  padding:1.5rem 0;
+  top:0rem;
   left:0;
   background: var(--primary-bg);
-  z-index:1;
+  z-index:10;
+  transition:2s;
 }
 /* End of Search Widget */
 
@@ -89,7 +123,7 @@ select{
 /* Notice Card Display */
 .notice_card{
   width:95%;
-  padding:0.5% 2.5%;
+  padding:0.1% 2.5%;
   margin:2rem 0;
   background:#FFF4EA;
   display: flex;
@@ -115,19 +149,31 @@ select{
   margin:2% 3%;
   padding:2%;
   display: inline-block;
-  box-shadow:0px 0px 15px rgb(194, 194, 194);
+  box-shadow:0px 2px 20px #cbced1;
   border-radius: 0.4rem;
   vertical-align:top;
+}
+.template_card  h4{
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow: ellipsis;
 }
 .template_card p{
   font-size:0.8rem;
   line-height:1.2rem;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow: ellipsis;
 }
-.template_card button{
+.template-card-base h4{
   background:transparent;
-  color:green;
+  color:rgb(7, 211, 7);
   border:none;
   font-size:0.8rem;
+  font-weight:bolder;
+}
+.template-card-base span{
+  font-size:0.65rem;
   font-weight:bolder;
 }
 

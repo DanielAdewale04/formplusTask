@@ -1,15 +1,57 @@
-import React, {Component} from "react";
+import React from "react";
 
-class SelectCard extends Component{
-    render(){
-        return(
-            <React.Fragment>
-                <select className="item-select">
-                    <option>{this.props.option}</option>
-                </select>
-            </React.Fragment>
-        )
-    }
+export const OptionCard = ({optionValue}) => {
+    return(
+        <option>{optionValue}</option>
+    )
 }
 
-export default SelectCard;
+export const optionValue = {
+    optionCategory : [
+        {
+            id: "1",
+            name: "All"
+        },
+        {
+            id: "2",
+            name: "Agriculture"
+        },
+        {
+            id: "3",
+            name: "E-commerce"
+        },
+        {
+            id: "4",
+            name: "Health"
+        },
+    ],
+    optionDate : [
+        {
+            id: "1",
+            name: "Default",
+        },
+        {
+            id: "2",
+            name: "Ascending",
+        },
+        {
+            id: "3",
+            name: "Descending",
+        },
+    ],
+    optionOrder : [
+        {
+            id : "1",
+            name: "Default",
+        },
+        {
+            id : "2",
+            name: "Ascending",
+        },
+        {
+            id : "3",
+            name: "Descending",
+        },
+    ]
+
+}
