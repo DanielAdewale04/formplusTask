@@ -13,19 +13,29 @@ function TemplateWidget(){
     const indexOfFirstTemp = useSelector((state) => state.paginationSlice.indexOfFirstTemp)
     const indexOfLastTemp = useSelector((state) => state.paginationSlice.indexOfLastTemp)
     const searchInput = useSelector((state) => state.storeSearch)
+    const CatHeader = useSelector((state) => state.getCategory)
     
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getTemp())     
     }, [useDispatch()])
+
+    const handleSearch = (value) => {
+        if (searchInput == ""){
+            return value
+        }
+        else if (value.name.toLowerCase().includes(searchInput.toLowerCase())){
+            return value
+        }
+    }
         
         
         return(
             <React.Fragment>
                  <div className="template_widget">
                     <div className="flexed-area centralized apart">
-                        <h4>All Templates</h4>
+                        <h4>{CatHeader} Templates</h4>
                         <h6>{templates.length} <span>templates</span></h6>
                     </div>
                     {
@@ -41,14 +51,7 @@ function TemplateWidget(){
                                 <InAppLoader />
                                     :
                                 <React.Fragment>
-                                    {templates.filter((value) => {
-                                        if (searchInput == ""){
-                                            return value
-                                        }
-                                        else if (value.name.toLowerCase().includes(searchInput.toLowerCase())){
-                                            return value
-                                        }
-                                    }).slice(indexOfFirstTemp, indexOfLastTemp).map((item) => <TemplateCard 
+                                    {templates.filter(handleSearch).slice(indexOfFirstTemp, indexOfLastTemp).map((item) => <TemplateCard 
                                                                                                         key={item.name} 
                                                                                                         title={item.name} 
                                                                                                         desc={item.description} 
